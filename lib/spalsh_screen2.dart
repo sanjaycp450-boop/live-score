@@ -1,5 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:new_project2/bottomnev.dart';
+
+import 'homescreen.dart';
 
 class SpalshScreen2 extends StatefulWidget {
   const SpalshScreen2({super.key});
@@ -161,6 +164,10 @@ class _SpalshScreen2State extends State<SpalshScreen2> {
                 height: 64,
                 child: ElevatedButton(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Bottomnev()),
+                    );
                     final List<String> selectedNames =
                         selectedSports
                             .map((index) => sports[index])
