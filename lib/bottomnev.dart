@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'explore_screen.dart';
 import 'homescreen.dart';
 import 'match_details.dart';
 
@@ -15,6 +16,7 @@ class _BottomnevState extends State<Bottomnev> {
 
   final List<Widget> screens = [
     Homescreen(),
+    ExplorePage(),
    
     // const Center(child: Text('Stats')),
     // const Center(child: Text('Profile')),
