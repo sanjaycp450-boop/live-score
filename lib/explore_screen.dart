@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+import 'search_screen.dart';
+
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
@@ -18,38 +21,38 @@ class _ExplorePageState extends State<ExplorePage> {
 
   final List<Map<String, String>> sports = [
     {'icon': '⚽', 'name': 'Soccer'},
-    {'icon': '🏀', 'name': ''},
-    {'icon': '🏈', 'name': ''},
-    {'icon': '⚾', 'name': ''},
-    {'icon': '🎾', 'name': ''},
+    {'icon': '🏀', 'name': 'Basketball'},
+    {'icon': '🏈', 'name': 'Football'},
+    {'icon': '⚾', 'name': 'Baseball'},
+    {'icon': '🎾', 'name': 'Tennis'},
   ];
 
   final List<Map<String, String>> news = [
     {
-      'image': 'assets/news1.jpg',
-      'title': 'Roumor Has It: Lampard’s position under threat, ...',
+      'image': 'assets/image 135.png',
+      'title': 'Rumour Has It: Lampard’s position under threat, ...',
       'date': '04 JAN 2021, 14:16',
     },
     {
-      'image': 'assets/news2.jpg',
-      'title': 'Arteta sees ‘natural leader’ Tierney as a future, ...',
+      'image': 'assets/articel5.png',
+      'title': 'Arteta sees natural leader Tierney as a future, ...',
       'date': '04 JAN 2021, 05:30',
     },
     {
-      'image': 'assets/news3.jpg',
+      'image': 'assets/articel2.png',
       'title': 'Athletic Bilbao to appoint Marcelino as coach until, ...',
       'date': '04 JAN 2021, 09:23',
     },
     {
-      'image': 'assets/news4.jpg',
+      'image': 'assets/image 147.png',
       'title': 'Barcelona suffer too much late in games, says Ter Stegen',
       'date': '04 JAN 2021, 06:06',
     },
   ];
 
   final List<String> trendingImages = [
-    'assets/trending1.jpg',
-    'assets/trending2.jpg',
+    'assets/articel4.png',
+    'assets/articel6.png',
   ];
 
   final List<String> trendingTitles = [
@@ -58,6 +61,13 @@ class _ExplorePageState extends State<ExplorePage> {
   ];
 
   final Set<int> bookmarkedNews = {};
+
+  void openSearch() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SearchScreen()),
+    );
+  }
 
   Widget buildSportTab(int index) {
     final bool selected = selectedSport == index;
@@ -70,31 +80,32 @@ class _ExplorePageState extends State<ExplorePage> {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        height: 88,
-        padding: EdgeInsets.symmetric(
-          horizontal: index == 0 ? 20 : 0,
-        ),
-        width: index == 0 ? 187 : 88,
-        margin: const EdgeInsets.only(right: 18),
+        height: 70,
+        width: index == 0 ? 175 : 85,
+        margin: const EdgeInsets.only(right: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
           color: selected ? orangeColor : cardColor,
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(40),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               sports[index]['icon']!,
-              style: const TextStyle(fontSize: 37),
+              style: const TextStyle(fontSize: 25),
             ),
-            if (index == 0) ...[
-              const SizedBox(width: 14),
-              const Text(
-                'Soccer',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 23,
-                  fontWeight: FontWeight.w600,
+            if (selected) ...[
+              const SizedBox(width: 10),
+              Flexible(
+                child: Text(
+                  sports[index]['name']!,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
@@ -106,23 +117,23 @@ class _ExplorePageState extends State<ExplorePage> {
 
   Widget buildNewsItem(int index) {
     final item = news[index];
+    final bool bookmarked = bookmarkedNews.contains(index);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 45),
+      padding: const EdgeInsets.only(bottom: 28),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(14),
             child: Image.asset(
               item['image']!,
-              width: 122,
-              height: 122,
+              width: 90,
+              height: 90,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
-                  width: 122,
-                  height: 122,
+                  width: 90,
+                  height: 90,
                   color: cardColor,
                   child: const Icon(
                     Icons.image,
@@ -133,53 +144,49 @@ class _ExplorePageState extends State<ExplorePage> {
               },
             ),
           ),
-          const SizedBox(width: 18),
+          const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   item['title']!,
-                  maxLines: 2,
+                  maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 13,
-                    height: 1.65,
+                    height: 1.5,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 12),
                 Text(
                   item['date']!,
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.75),
-                    fontSize: 18,
+                    color: Colors.white.withOpacity(0.65),
+                    fontSize: 11,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(width: 14),
-          GestureDetector(
-            onTap: () {
+          const SizedBox(width: 8),
+          IconButton(
+            onPressed: () {
               setState(() {
-                if (bookmarkedNews.contains(index)) {
+                if (bookmarked) {
                   bookmarkedNews.remove(index);
                 } else {
                   bookmarkedNews.add(index);
                 }
               });
             },
-            child: Icon(
-              bookmarkedNews.contains(index)
-                  ? Icons.bookmark
-                  : Icons.bookmark_border,
-              color: bookmarkedNews.contains(index)
-                  ? orangeColor
-                  : mutedColor,
-              size: 42,
+            icon: Icon(
+              bookmarked ? Icons.bookmark : Icons.bookmark_border,
+              color: bookmarked ? orangeColor : mutedColor,
+              size: 30,
             ),
           ),
         ],
@@ -189,22 +196,18 @@ class _ExplorePageState extends State<ExplorePage> {
 
   Widget buildTrendingCard(int index) {
     return Container(
-      width: 360,
-      margin: const EdgeInsets.only(right: 36),
+      width: 280,
+      margin: const EdgeInsets.only(right: 16),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(18),
         child: Stack(
-          alignment: Alignment.bottomLeft,
+          fit: StackFit.expand,
           children: [
             Image.asset(
               trendingImages[index],
-              height: 260,
-              width: 470,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
-                  height: 260,
-                  width: 470,
                   color: cardColor,
                   child: const Icon(
                     Icons.image,
@@ -215,8 +218,8 @@ class _ExplorePageState extends State<ExplorePage> {
               },
             ),
             Container(
-              width: 470,
-              padding: const EdgeInsets.all(20),
+              alignment: Alignment.bottomLeft,
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -230,9 +233,10 @@ class _ExplorePageState extends State<ExplorePage> {
               child: Text(
                 trendingTitles[index],
                 maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -243,39 +247,50 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
-  Widget buildBottomItem(
-    IconData icon,
-    int index,
-  ) {
+  Widget buildBottomItem(IconData icon, int index, String label) {
     final bool selected = selectedBottom == index;
 
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedBottom = index;
-        });
-      },
-      child: SizedBox(
-        width: 90,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: selected ? const Color(0xFF3878FF) : mutedColor,
-              size: 42,
-            ),
-            const SizedBox(height: 8),
-            if (selected)
-              Container(
-                width: 9,
-                height: 9,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF3878FF),
-                  shape: BoxShape.circle,
+    return Expanded(
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            selectedBottom = index;
+          });
+
+          if (index == 0 && Navigator.canPop(context)) {
+            Navigator.pop(context);
+          }
+        },
+        child: SizedBox(
+          height: 70,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: selected ? const Color(0xFF3878FF) : mutedColor,
+                size: 28,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: TextStyle(
+                  color: selected ? const Color(0xFF3878FF) : mutedColor,
+                  fontSize: 11,
                 ),
               ),
-          ],
+              const SizedBox(height: 3),
+              if (selected)
+                Container(
+                  width: 6,
+                  height: 6,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF3878FF),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -290,51 +305,52 @@ class _ExplorePageState extends State<ExplorePage> {
           physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 40,
-              left: 46,
-              right: 0,
-              bottom: 30,
+              top: 24,
+              left: 20,
+              right: 20,
+              bottom: 25,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Search bar
-                Padding(
-                  padding: const EdgeInsets.only(right: 48),
-                  child: Container(
-                    height: 60,
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    decoration: BoxDecoration(
-                      color: cardColor,
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.search,
-                          size: 40,
-                          color: mutedColor,
-                        ),
-                        const SizedBox(width: 15),
-                        Expanded(
-                          child: TextField(
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                            ),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText:
-                                  'Search for news, team, match, etc...',
-                              hintStyle: TextStyle(
-                                color: mutedColor,
-                                fontSize: 22,
-                              ),
-                            ),
+                // Search bar with ElevatedButton
+                Container(
+                  height: 58,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  decoration: BoxDecoration(
+                    color: cardColor,
+                    borderRadius: BorderRadius.circular(28),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, size: 28, color: mutedColor),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: openSearch,
+                          child: Text(
+                            'Search for news, team, match...',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(color: mutedColor, fontSize: 13),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 8),
+                      ElevatedButton(
+                        onPressed: openSearch,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: orangeColor,
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          padding: const EdgeInsets.all(10),
+                          minimumSize: const Size(42, 42),
+                          shape: const CircleBorder(),
+                        ),
+                        child: const Icon(Icons.arrow_forward, size: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
@@ -342,7 +358,7 @@ class _ExplorePageState extends State<ExplorePage> {
 
                 // Sports categories
                 SizedBox(
-                  height: 70,
+                  height: 72,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: sports.length,
@@ -352,20 +368,13 @@ class _ExplorePageState extends State<ExplorePage> {
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 24),
 
                 // Latest news
-                Padding(
-                  padding: const EdgeInsets.only(right: 42),
-                  child: Column(
-                    children: List.generate(
-                      news.length,
-                      (index) => buildNewsItem(index),
-                    ),
-                  ),
+                ...List.generate(news.length, (index) => buildNewsItem(index),
                 ),
 
-                const SizedBox(height: 5),
+                const SizedBox(height: 8),
 
                 // Trending news heading
                 const Text(
@@ -377,11 +386,11 @@ class _ExplorePageState extends State<ExplorePage> {
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 16),
 
-                // Trending news horizontal cards
+                // Trending news cards
                 SizedBox(
-                  height: 120,
+                  height: 180,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: trendingImages.length,
@@ -391,7 +400,7 @@ class _ExplorePageState extends State<ExplorePage> {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -399,7 +408,23 @@ class _ExplorePageState extends State<ExplorePage> {
       ),
 
       // Bottom navigation bar
-     
+      // bottomNavigationBar: Container(
+      //   decoration: BoxDecoration(
+      //     color: const Color(0xFF222131),
+      //     border: Border(
+      //       top: BorderSide(color: Colors.white.withOpacity(0.06)),
+      //     ),
+      //   ),
+      //   child: SafeArea(
+      //     top: false,
+      //     child: Row(
+      //       children: [
+      //         buildBottomItem(Icons.home_outlined, 0, 'Home'),
+      //         buildBottomItem(Icons.explore_outlined, 1, 'Explore'),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

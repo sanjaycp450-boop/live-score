@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'explore_screen.dart';
 import 'homescreen.dart';
-import 'match_details.dart';
+// import 'match_details.dart';
+import 'profile_screen.dart';
+import 'search_screen.dart';
 
 class Bottomnev extends StatefulWidget {
   const Bottomnev({super.key});
@@ -17,6 +19,8 @@ class _BottomnevState extends State<Bottomnev> {
   final List<Widget> screens = [
     Homescreen(),
     ExplorePage(),
+    SearchScreen(),
+    MyProfilePage(),
    
     // const Center(child: Text('Stats')),
     // const Center(child: Text('Profile')),

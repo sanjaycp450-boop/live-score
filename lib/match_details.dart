@@ -157,7 +157,7 @@ class _MatchDetailsPageState extends State<MatchDetailsPage> {
 
                       // Tab content
                       SizedBox(
-                        height: 330,
+                        height: 350,
                         width: double.infinity,
                         child: TabBarView(
                           children: [
@@ -192,7 +192,7 @@ class _MatchDetailsPageState extends State<MatchDetailsPage> {
                                   Image(
                                     image: AssetImage('assets/Group 3232.png'),
                                     width: double.infinity,
-                                    height: 700,
+                                    height: 300,
                                     fit: BoxFit.contain,
                                   ),
                                 ],
@@ -226,7 +226,7 @@ class _MatchDetailsPageState extends State<MatchDetailsPage> {
 
                       const SizedBox(height: 60),
 
-                      // Other matches heading
+                
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
@@ -257,7 +257,7 @@ class _MatchDetailsPageState extends State<MatchDetailsPage> {
 
                       const SizedBox(height: 12),
 
-                      // Match card 1
+            
                       _matchCard(
                         'assets/60db32edf242a46614df9825164eedce95932cf8.png',
                         'assets/9b4abc014fc0597717a04481403b8bf9f387d10c.png',
@@ -268,7 +268,6 @@ class _MatchDetailsPageState extends State<MatchDetailsPage> {
 
                       const SizedBox(height: 16),
 
-                      // Match card 2
                       _matchCard(
                         'assets/0120fd5f1e44a2fa497512bf8034e53c2c35a37b.png',
                         'assets/d28a08bfc9623c2a1c0dcafeb3c00796379925af.png',
@@ -289,7 +288,6 @@ class _MatchDetailsPageState extends State<MatchDetailsPage> {
     );
   }
 
-  // Team logo and name
   Widget _team(String image, String name) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -337,7 +335,6 @@ class _MatchDetailsPageState extends State<MatchDetailsPage> {
     );
   }
 
-  // Match statistics row
   Widget _statRow(String left, String title, String right) {
     return Padding(
       padding: const EdgeInsets.symmetric(
