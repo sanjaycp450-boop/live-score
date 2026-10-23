@@ -5,6 +5,7 @@ import 'homescreen.dart';
 // import 'match_details.dart';
 import 'profile_screen.dart';
 import 'search_screen.dart';
+import 'standing_screen.dart';
 
 class Bottomnev extends StatefulWidget {
   const Bottomnev({super.key});
@@ -19,7 +20,7 @@ class _BottomnevState extends State<Bottomnev> {
   final List<Widget> screens = [
     Homescreen(),
     ExplorePage(),
-    SearchScreen(),
+    StandingsPage(),
     MyProfilePage(),
    
     // const Center(child: Text('Stats')),
@@ -68,12 +69,12 @@ class _BottomnevState extends State<Bottomnev> {
             BottomNavigationBarItem(
               icon: Icon(Icons.bar_chart_rounded, size: 27),
               activeIcon: Icon(Icons.bar_chart, size: 27),
-              label: 'Stats',
+              label: 'Staqnding',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline_rounded, size: 29),
               activeIcon: Icon(Icons.person, size: 29),
-              label: 'Profile',
+              label: 'My Profile',
             ),
           ],
         ),

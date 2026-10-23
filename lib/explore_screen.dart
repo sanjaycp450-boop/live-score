@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'article_details.dart';
 import 'search_screen.dart';
 
 
@@ -337,26 +338,14 @@ class _ExplorePageState extends State<ExplorePage> {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      ElevatedButton(
-                        onPressed: openSearch,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: orangeColor,
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          padding: const EdgeInsets.all(10),
-                          minimumSize: const Size(42, 42),
-                          shape: const CircleBorder(),
-                        ),
-                        child: const Icon(Icons.arrow_forward, size: 20,
-                        ),
-                      ),
+                   
                     ],
                   ),
                 ),
 
                 const SizedBox(height: 24),
 
-                // Sports categories
+          
                 SizedBox(
                   height: 72,
                   child: ListView.builder(
@@ -369,14 +358,13 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
 
                 const SizedBox(height: 24),
-
                 // Latest news
                 ...List.generate(news.length, (index) => buildNewsItem(index),
                 ),
 
                 const SizedBox(height: 8),
 
-                // Trending news heading
+                
                 const Text(
                   'Trending News',
                   style: TextStyle(
@@ -388,14 +376,24 @@ class _ExplorePageState extends State<ExplorePage> {
 
                 const SizedBox(height: 16),
 
-                // Trending news cards
                 SizedBox(
+                  
                   height: 180,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: trendingImages.length,
                     itemBuilder: (context, index) {
-                      return buildTrendingCard(index);
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ArticleDetailsPage(),
+                            ),
+                          );
+                        },
+                        child: buildTrendingCard(index),
+                      );
                     },
                   ),
                 ),
@@ -407,24 +405,7 @@ class _ExplorePageState extends State<ExplorePage> {
         ),
       ),
 
-      // Bottom navigation bar
-      // bottomNavigationBar: Container(
-      //   decoration: BoxDecoration(
-      //     color: const Color(0xFF222131),
-      //     border: Border(
-      //       top: BorderSide(color: Colors.white.withOpacity(0.06)),
-      //     ),
-      //   ),
-      //   child: SafeArea(
-      //     top: false,
-      //     child: Row(
-      //       children: [
-      //         buildBottomItem(Icons.home_outlined, 0, 'Home'),
-      //         buildBottomItem(Icons.explore_outlined, 1, 'Explore'),
-      //       ],
-      //     ),
-      //   ),
-      // ),
+    
     );
   }
 }

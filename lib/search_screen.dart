@@ -42,8 +42,8 @@ class _TeamSearchPageState extends State<SearchScreen> {
       'team1': 'Dortmund',
       'team2': 'München',
       'date': 'Wednesday, 8 Apr 2021 . 02.30 am',
-      'logo1': '',
-      'logo2': 'assets/bayern.png',
+      'logo1': 'assets/bvb.png',
+      'logo2': 'assets/BayernMünchen.png',
     },
     {
       'team1': 'Real Madrid',
@@ -57,14 +57,14 @@ class _TeamSearchPageState extends State<SearchScreen> {
       'team2': 'Watford',
       'date': 'Friday, 21 Apr 2021 . 02.45 am',
       'logo1': 'assets/0120fd5f1e44a2fa497512bf8034e53c2c35a37b.png',
-      'logo2': 'assets/watford.png',
+      'logo2': 'assets/watfoed.png',
     },
     {
       'team1': 'Swansea City',
       'team2': 'Fulham',
       'date': 'Sunday, 2 May 2021 . 04.45 am',
-      'logo1': 'assets/swansea.png',
-      'logo2': 'assets/idezia.png',
+      'logo1': 'assets/nnnn.png',
+      'logo2': 'assets/last.png',
     },
     {
       'team1': 'Wolfsburg',
